@@ -1,8 +1,9 @@
-package de.fakultaet73.therealcoolkids.gmdb.model;
+package de.fakultaet73.theRealCoolKids.GMDB.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @NotNull
+    @ElementCollection
     private Set<Role> role = new HashSet<>();
 
     @OneToMany

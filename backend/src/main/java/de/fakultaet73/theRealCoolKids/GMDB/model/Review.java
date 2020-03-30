@@ -1,4 +1,4 @@
-package de.fakultaet73.therealcoolkids.gmdb.model;
+package de.fakultaet73.theRealCoolKids.GMDB.model;
 
 import java.time.LocalDate;
 
@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -32,6 +33,6 @@ public class Review {
     @NotNull
     private String text;
 
-    @NotNull
+    @OneToOne
     private User user;
 }

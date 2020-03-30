@@ -1,4 +1,4 @@
-package de.fakultaet73.therealcoolkids.gmdb;
+package de.fakultaet73.theRealCoolKids.GMDB;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

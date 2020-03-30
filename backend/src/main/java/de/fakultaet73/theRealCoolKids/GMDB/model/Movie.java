@@ -1,4 +1,4 @@
-package de.fakultaet73.therealcoolkids.gmdb.model;
+package de.fakultaet73.theRealCoolKids.GMDB.model;
 
 import java.time.LocalDate;
 import java.util.List;
