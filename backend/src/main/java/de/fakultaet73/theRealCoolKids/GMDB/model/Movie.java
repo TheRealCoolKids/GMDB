@@ -1,7 +1,7 @@
 package de.fakultaet73.theRealCoolKids.GMDB.model;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,13 +13,16 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Movie
  */
 @Entity
-@Data
 @NoArgsConstructor
+@Data
+@RequiredArgsConstructor
 public class Movie {
 
     @Id
@@ -27,19 +30,22 @@ public class Movie {
     private long id;
 
     @NotNull
+    @NonNull
     private String title;
 
-    @NotNull
-    private LocalDate yearReleased;
+    @NonNull
+    private int yearReleased;
 
     @NotNull
+    @NonNull
     private Genre genre;
 
+    @NonNull
     private int runtime;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Review> reviews;
+    private Set<Review> reviews = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Rating> ratings;
+    private Set<Rating> ratings = new HashSet<>();
 }

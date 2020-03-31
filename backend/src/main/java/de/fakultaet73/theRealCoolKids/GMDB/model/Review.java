@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Review
@@ -18,18 +20,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
+    @NonNull
     private String title;
 
+    @NonNull
     @NotNull
     private LocalDate creationDate;
 
+    @NonNull
     @NotNull
     private String text;
 
