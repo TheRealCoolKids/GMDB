@@ -1,0 +1,14 @@
+.header{
+    position: sticky;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 1000;
+    height:100px;
+    background-color: #3A4454;
+    color: #ffffcc;
+}
+
+.header h1{
+    line-height: 100px;
+}

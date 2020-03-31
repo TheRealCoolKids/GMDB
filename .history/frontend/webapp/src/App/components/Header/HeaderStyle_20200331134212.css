@@ -1,0 +1,17 @@
+.header{
+    display: inline-block;
+    position: sticky;
+    width: 100%;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 1000;
+    height:100px;
+    background-color: #0C4677;
+    padding: 0 20px;
+    color: #FFFEFD;
+}
+
+.header h1{
+    line-height: 100px;
+}

@@ -1,0 +1,15 @@
+.movie-single-small {
+    text-align: center;
+    width:450px;
+    background-color: #FFFEFD;
+}
+
+.movie-meta{
+    position: absolute;
+    bottom: 0;
+    left:auto;
+    text-align: center;
+}
+/* .movie-single-small:hover {
+    transform: scale(0.85);
+  } */

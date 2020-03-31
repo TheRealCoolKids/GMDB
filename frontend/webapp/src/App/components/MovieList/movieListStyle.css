@@ -1,0 +1,7 @@
+.movie-list .row{
+    justify-content: space-between;
+}
+
+.movie-single-small{
+    margin-bottom: 20px;
+}

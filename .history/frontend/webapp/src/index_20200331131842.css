@@ -3,10 +3,6 @@
   src: url("./App//res//PressStart2P-Regular.ttf"); 
   }
 
-*{
-  font-family: PIXEL;
-}
-
 body {
   margin: 0;
   background-color: rgb(32, 50, 71);

@@ -1,0 +1,7 @@
+.movie-list .row{
+    justify-content: space-between;
+}
+
+[class*="col-"] {
+    margin-bottom: 50px;
+}
