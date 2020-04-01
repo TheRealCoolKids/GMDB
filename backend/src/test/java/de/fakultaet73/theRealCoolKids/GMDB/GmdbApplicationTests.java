@@ -1,4 +1,4 @@
-package de.fakultaet73.therealcoolkids.gmdb;
+package de.fakultaet73.theRealCoolKids.GMDB;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

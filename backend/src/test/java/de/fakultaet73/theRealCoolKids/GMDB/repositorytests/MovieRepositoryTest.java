@@ -1,4 +1,4 @@
-package de.fakultaet73.theRealCoolKids.GMDB;
+package de.fakultaet73.theRealCoolKids.GMDB.repositorytests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
