@@ -4,15 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import de.fakultaet73.theRealCoolKids.GMDB.model.Genre;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Movie;
@@ -23,14 +22,11 @@ import de.fakultaet73.theRealCoolKids.GMDB.repository.RatingRepository;
 import de.fakultaet73.theRealCoolKids.GMDB.repository.ReviewRepository;
 
 @DataJpaTest
-class MovieRepositoryTests {
+class MovieRepositoryTest {
 
     Movie movie;
     Review review1, review2, review3;
     Rating rating1, rating2, rating3;
-
-    @Autowired
-    private TestEntityManager testEntityManager;
 
     @Autowired
     private MovieRepository movieRepository;
@@ -93,7 +89,7 @@ class MovieRepositoryTests {
     }
 
     @Test
-    void shouldSaveAChangedMovie(){
+    void shouldSaveAChangedMovie() {
 
         Movie movie = this.movieRepository.save(this.movie);
 
@@ -111,4 +107,51 @@ class MovieRepositoryTests {
         assertThat(actual.getTitle()).isEqualTo("New Movie title");
     }
 
+    @Test
+    void shouldDeleteAReview() {
+
+        Collections.addAll(movie.getReviews(), review1, review2, review3);
+
+        movie = this.movieRepository.save(movie);
+        movie = this.movieRepository.findById(movie.getId()).get();
+
+        Review deletedReview = movie.getReviews().iterator().next();
+
+        movie.getReviews().remove(deletedReview);
+
+        Movie expected = this.movieRepository.save(movie);
+
+        Movie actual = this.movieRepository.findById(expected.getId()).get();
+        List<Review> actualReviews = this.reviewRepository.findAll();
+
+        assertThat(actual.getReviews()).hasSize(2);
+        assertThat(actual.getReviews().toArray()).doesNotContain(deletedReview);
+
+        assertArrayEquals(actual.getReviews().toArray(), expected.getReviews().toArray());
+        assertThat(actualReviews.toArray()).hasSize(2);
+    }
+
+    @Test
+    void shouldDeleteARating() {
+
+        Collections.addAll(movie.getRatings(), rating1, rating2, rating3);
+
+        movie = this.movieRepository.save(movie);
+        movie = this.movieRepository.findById(movie.getId()).get();
+
+        Rating deletedRating = movie.getRatings().iterator().next();
+
+        movie.getRatings().remove(deletedRating);
+
+        Movie expected = this.movieRepository.save(movie);
+
+        Movie actual = this.movieRepository.findById(expected.getId()).get();
+        List<Rating> actualRatings = this.ratingRepository.findAll();
+
+        assertThat(actual.getRatings()).hasSize(2);
+        assertThat(actual.getRatings().toArray()).doesNotContain(deletedRating);
+
+        assertArrayEquals(actual.getRatings().toArray(), expected.getRatings().toArray());
+        assertThat(actualRatings.toArray()).hasSize(2);
+    }
 }

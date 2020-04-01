@@ -9,35 +9,42 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Review
  */
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NonNull
     private String title;
 
-    @NonNull
     @NotNull
     private LocalDate creationDate;
 
-    @NonNull
     @NotNull
     private String text;
 
     @OneToOne
     private User user;
+
+    public Review(String title, LocalDate creationDate, String text) {
+        this.title = title;
+        this.creationDate = creationDate;
+        this.text = text;
+    }
+
 }
+
+
+

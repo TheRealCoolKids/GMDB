@@ -11,18 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 
 /**
  * Movie
  */
 @Entity
 @NoArgsConstructor
-@Data
-@RequiredArgsConstructor
+@Getter
+@Setter
 public class Movie {
 
     @Id
@@ -30,22 +30,25 @@ public class Movie {
     private long id;
 
     @NotNull
-    @NonNull
     private String title;
 
-    @NonNull
     private int yearReleased;
 
     @NotNull
-    @NonNull
     private Genre genre;
 
-    @NonNull
     private int runtime;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Rating> ratings = new HashSet<>();
+
+    public Movie(String title, int yearReleased, Genre genre, int runtime) {
+        this.title = title;
+        this.yearReleased = yearReleased;
+        this.genre = genre;
+        this.runtime = runtime;
+    }
 }

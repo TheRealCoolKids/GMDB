@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,11 +15,14 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User {
 
@@ -33,6 +38,7 @@ public class User {
     private String password;
 
     @ElementCollection
+    @Enumerated(EnumType.STRING)
     private Set<Role> role = new HashSet<>();
 
     @OneToMany
@@ -40,4 +46,9 @@ public class User {
 
     @OneToMany
     private Set<Movie> watchedList = new HashSet<>();
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 }
