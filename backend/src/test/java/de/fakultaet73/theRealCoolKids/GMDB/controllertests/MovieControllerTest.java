@@ -26,7 +26,6 @@ import de.fakultaet73.theRealCoolKids.GMDB.model.Genre;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Movie;
 import de.fakultaet73.theRealCoolKids.GMDB.repository.MovieRepository;
 
-
 @WebMvcTest
 @AutoConfigureMockMvc
 class MovieControllerTest {
@@ -34,43 +33,36 @@ class MovieControllerTest {
     Movie movie1;
     Movie movie2;
     Movie movie3;
-    
-        @MockBean
-        MovieRepository movieRepository;
-    
-        @Autowired
-        private MockMvc mvc;
 
-        @Autowired
-        ObjectMapper objectMapper;
+    @MockBean
+    MovieRepository movieRepository;
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @BeforeEach
-    void init(){
+    void init() {
         movie1 = new Movie("Test1", 2001, Genre.ACTION, 1);
         movie2 = new Movie("Test2", 2002, Genre.ACTION, 2);
         movie3 = new Movie("Test3", 2003, Genre.ACTION, 3);
     }
 
-
-
     @Test
     void shouldReturnAListOfAllMovies() throws Exception {
         List<Movie> expected = Arrays.asList(movie1, movie2);
         Mockito.when(movieRepository.findAll()).thenReturn(expected);
-       String json =   this.mvc.perform(get("/movies"))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$", hasSize(2)))
-        .andExpect(jsonPath("$[0].title", is("Test1")))
-        .andExpect(jsonPath("$[1].title", is("Test2")))
-        .andReturn()
-        .getResponse()
-        .getContentAsString();
-        List<Movie> actual = objectMapper.readValue(json, new TypeReference<List<Movie>>() {});
+        String json = this.mvc.perform(get("/movies")).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].title", is("Test1"))).andExpect(jsonPath("$[1].title", is("Test2")))
+                .andReturn().getResponse().getContentAsString();
+        List<Movie> actual = objectMapper.readValue(json, new TypeReference<List<Movie>>() {
+        });
         assertThat(actual).isEqualTo(expected);
     }
 
-    void shouldReturnAMoviewhenaMovieIsSavend(){
-            
+    void shouldReturnAMoviewhenaMovieIsSavend() {
 
     }
 
