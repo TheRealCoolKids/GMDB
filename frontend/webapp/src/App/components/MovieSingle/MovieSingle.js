@@ -8,7 +8,7 @@ import MoodIcon from '@material-ui/icons/Mood';
 
 function MovieSingle(props) {
     return (
-        <div className="card movie-single-small">
+        <div className="card movie-single-small" data-testid="MovieCard" >
             <div className="card-body">
                 <h1 className="card-title">{props.movie.title}</h1>
                 <div className="container">

@@ -2,17 +2,6 @@ import React from 'react';
 import Movie from "../MovieSingle/MovieSingle";
 import './movieListStyle.css';
 
-const mock = {
-    id: 1,
-    title: "John big Dick",
-    yearReleased: 2013,
-    genre: "Underground hardcore Heimatporn",
-    runtime: "69",
-    rating: 5,
-    reviews: [],
-    ratings: 20
-};
-
 function MovieList(props) {
 
     const loadMovies = () => {
@@ -65,13 +54,12 @@ function MovieList(props) {
     }
 
     return (
-        <div className="container-fluid movie-list">
+        <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
 
             <div className="row">
                 {loadMovies().map((m, i) => {
-                    console.log(i)
                     return (
-                        <Movie movie={m} />
+                        <Movie movie={m}  key={i} />
                     )
                 })}
             </div>
