@@ -47,7 +47,7 @@ public class User {
     private Set<Movie> watchedList = new HashSet<>();
 
     public User(String userName, String password) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 }
