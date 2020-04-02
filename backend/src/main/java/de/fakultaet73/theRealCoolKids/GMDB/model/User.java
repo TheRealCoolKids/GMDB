@@ -50,4 +50,20 @@ public class User {
         this.username = userName;
         this.password = password;
     }
+
+    public boolean addToWatchList(Movie movie) {
+        return this.watchList.add(movie);
+    }
+
+    public boolean addToWatchedList(Movie movie) {
+        return this.watchedList.add(movie);
+    }
+
+    public boolean deleteFromWatchList(Movie movie) {
+        return this.watchList.remove(movie);
+    }
+
+    public boolean deleteFromWactedList(Movie movie) {
+        return this.watchedList.remove(movie);
+    }
 }

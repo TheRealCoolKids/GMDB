@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +27,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+
 import de.fakultaet73.theRealCoolKids.GMDB.model.Genre;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Movie;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Rating;
@@ -35,7 +37,7 @@ import de.fakultaet73.theRealCoolKids.GMDB.repository.RatingRepository;
 import de.fakultaet73.theRealCoolKids.GMDB.repository.ReviewRepository;
 import de.fakultaet73.theRealCoolKids.GMDB.repository.UserRepository;
 
-@WebMvcTest
+@WebMvcTest()
 @AutoConfigureMockMvc
 class MovieControllerTest {
 
@@ -136,30 +138,59 @@ class MovieControllerTest {
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
         .content(payload))
-        .andExpect(status().isOk())
+        .andExpect(status().isCreated())
         .andReturn().getResponse().getContentAsString();
         Movie actual = this.objectMapper.readValue(json, Movie.class);
         assertThat(actual).isEqualTo(movie1);
     }
- 
-    
+     
 // 1. As an admin, I want to be able to delete a movie & its data from the
 // database so that it stays up to date
 
     @Test
-    void shouldReturnStatusOkIfAMovieIsDeleted() throws Exception{
-  
+    void shouldReturnStatusNoContentIfAMovieIsDeleted() throws Exception{
+       
+        Mockito.when(this.movieRepository.findById(11L)).thenReturn( Optional.of(new Movie()));
             this.mvc.perform(MockMvcRequestBuilders
-                    .delete("/movie/{id}", "11")
+                    .delete("/movies/{id}", "11")
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isNoContent());
         }
-    }
 
-
+    @Test
+    void shouldReturnStatusNotFoundIfAnAbsentMovieShouldBeDeleted() throws Exception{
+          
+            Mockito.when(this.movieRepository.findById(11L)).thenReturn(Optional.empty());
+            this.mvc.perform(MockMvcRequestBuilders
+                    .delete("/movies/{id}", "11")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest());
+        }
+    
 // 1. As a reviewer, I want to be able to add/write a review for a movie I’ve
 // seen so that other users will know what I think about this movie
+
+    @Test
+    void shouldReturnStatusCreatedIfReviewWasAddedToMovie() throws Exception {
+        movie1.setId(11L);
+        Mockito.when(this.movieRepository.findById(11L)).thenReturn(Optional.of(movie1));
+        Mockito.when(this.movieRepository.save(movie1)).thenReturn(movie1);
+        String payload = this.objectMapper.writeValueAsString(this.review1);
+
+        this.mvc.perform(post("/movies/11/reviews")
+        .characterEncoding("UTF-8")
+        .content(payload)
+        .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isCreated());
+
+        assertThat(movie1.getReviews()).hasSize(1);
+        assertThat(movie1.getReviews().iterator().next()).isEqualTo(review1);
+    }
+}
+
 
 // 1. As a reviewer, I want to be able to rate movies (out of 5 stars) so that
 // other users will know what I rate this movie out of 5

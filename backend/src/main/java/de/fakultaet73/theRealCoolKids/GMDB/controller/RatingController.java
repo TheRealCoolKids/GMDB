@@ -23,6 +23,6 @@ public class RatingController {
             Rating updatedRating = this.ratingRepository.save(rating);
             return new ResponseEntity<>(updatedRating, HttpStatus.OK);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.badRequest().build();
     }
 }

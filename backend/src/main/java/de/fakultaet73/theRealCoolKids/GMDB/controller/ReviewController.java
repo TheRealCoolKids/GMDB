@@ -1,7 +1,7 @@
 package de.fakultaet73.theRealCoolKids.GMDB.controller;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +26,12 @@ public class ReviewController {
     UserRepository userRepository;
 
     @GetMapping("/reviews/{username}")
-    public List<Review> getReviewByUser(@PathVariable String username) {
-        User user = userRepository.findByUsername(username);
-        return this.reviewRepository.findByUser(user);
+    public ResponseEntity<List<Review>> getReviewByUser(@PathVariable String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if(user.isPresent())
+            return new ResponseEntity<>(this.reviewRepository.findByUser(user.get()), HttpStatus.OK);
+        return ResponseEntity.badRequest().build();
+            
     }
 
     @PutMapping("/reviews")
@@ -38,6 +41,6 @@ public class ReviewController {
             Review updatedReview = this.reviewRepository.save(review);
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.badRequest().build();
     }
 }

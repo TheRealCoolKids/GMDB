@@ -26,7 +26,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     private String title;
@@ -59,52 +59,32 @@ public class Movie {
         return this.reviews.remove(review);
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((genre == null) ? 0 : genre.hashCode());
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((ratings == null) ? 0 : ratings.hashCode());
-        result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
-        result = prime * result + runtime;
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        result = prime * result + yearReleased;
-        return result;
+    public boolean addRating(Rating rating) {
+        return this.ratings.add(rating);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Movie other = (Movie) obj;
-        if (genre != other.genre)
-            return false;
-        if (id != other.id)
-            return false;
-        if (ratings == null) {
-            if (other.ratings != null)
-                return false;
-        } else if (!ratings.equals(other.ratings))
-            return false;
-        if (reviews == null) {
-            if (other.reviews != null)
-                return false;
-        } else if (!reviews.equals(other.reviews))
-            return false;
-        if (runtime != other.runtime)
-            return false;
-        if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        if (yearReleased != other.yearReleased)
-            return false;
-        return true;
+    public boolean deleteRating(Rating rating) {
+        return this.ratings.remove(rating);
     }
-}
+     
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+     
+            if (!(o instanceof Movie))
+                return false;
+     
+            Movie other = (Movie) o;
+     
+            return id != null &&
+                   id.equals(other.getId());
+        }
+     
+        @Override
+        public int hashCode() {
+            return 31;
+        }
+     
+        //Getters and setters omitted for brevity
+    }
+
