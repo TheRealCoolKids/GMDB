@@ -7,11 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Range;
-import lombok.Setter;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-
+import lombok.Setter;
 
 /**
  * Rating
@@ -24,7 +23,7 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Range(min = 0, max = 5)
     private int score;
 
@@ -33,5 +32,16 @@ public class Rating {
 
     public Rating(int score) {
         this.score = score;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof Rating))
+            return false;
+
+        Rating other = (Rating) o;
+
+        return id != null && id.equals(other.getId());
     }
 }

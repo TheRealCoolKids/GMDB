@@ -25,19 +25,22 @@ public class ReviewController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/reviews/{username}")
+    @GetMapping("/reviewer/{username}")
     public ResponseEntity<List<Review>> getReviewByUser(@PathVariable String username) {
+
         Optional<User> user = userRepository.findByUsername(username);
-        if(user.isPresent())
+
+        if (user.isPresent())
             return new ResponseEntity<>(this.reviewRepository.findByUser(user.get()), HttpStatus.OK);
+
         return ResponseEntity.badRequest().build();
-            
     }
 
     @PutMapping("/reviews")
     public ResponseEntity<Review> updateReview(@RequestBody Review review) {
 
         if (this.reviewRepository.findById(review.getId()).isPresent()) {
+
             Review updatedReview = this.reviewRepository.save(review);
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         }

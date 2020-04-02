@@ -18,6 +18,8 @@ import de.fakultaet73.theRealCoolKids.GMDB.model.Movie;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Rating;
 import de.fakultaet73.theRealCoolKids.GMDB.model.Review;
 import de.fakultaet73.theRealCoolKids.GMDB.repository.MovieRepository;
+import de.fakultaet73.theRealCoolKids.GMDB.repository.RatingRepository;
+import de.fakultaet73.theRealCoolKids.GMDB.repository.ReviewRepository;
 
 /**
  * MovieController
@@ -27,6 +29,12 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @GetMapping("/movies")
     public List<Movie> getAllMovies() {
@@ -38,7 +46,7 @@ public class MovieController {
     public ResponseEntity<Movie> getMovie(@PathVariable long id) {
 
         Optional<Movie> movie = this.movieRepository.findById(id);
-        if (movie.isPresent()) 
+        if (movie.isPresent())
             return new ResponseEntity<>(movie.get(), HttpStatus.OK);
         return ResponseEntity.badRequest().build();
     }
@@ -61,7 +69,9 @@ public class MovieController {
 
     @PostMapping("/movies/{id}/reviews")
     public ResponseEntity<Movie> saveReviews(@PathVariable Long id, @RequestBody Review review) {
+
         Optional<Movie> movie = this.movieRepository.findById(id);
+
         if (movie.isPresent()) {
             movie.get().addReview(review);
             Movie updatedMovie = this.movieRepository.save(movie.get());
@@ -72,7 +82,9 @@ public class MovieController {
 
     @PostMapping("/movies/{id}/ratings")
     public ResponseEntity<Movie> saveRatings(@PathVariable Long id, @RequestBody Rating rating) {
+
         Optional<Movie> movie = this.movieRepository.findById(id);
+
         if (movie.isPresent()) {
             movie.get().addRating(rating);
             Movie updatedMovie = this.movieRepository.save(movie.get());
@@ -81,22 +93,28 @@ public class MovieController {
         return ResponseEntity.badRequest().build();
     }
 
-    @DeleteMapping("/movies/{id}/reviews")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestBody Review review) {
-        Optional<Movie> movie = this.movieRepository.findById(id);
-        if (movie.isPresent()) {
-            movie.get().deleteReview(review);
+    @DeleteMapping("/movies/{movieId}/reviews/{reviewId}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long movieId, @PathVariable Long reviewId) {
+
+        Optional<Movie> movie = this.movieRepository.findById(movieId);
+        Optional<Review> review = this.reviewRepository.findById(reviewId);
+
+        if (movie.isPresent() && review.isPresent()) {
+            movie.get().deleteReview(review.get());
             this.movieRepository.save(movie.get());
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.badRequest().build();
     }
 
-    @DeleteMapping("/ratings/{id}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestBody Rating rating) {
-        Optional<Movie> movie = this.movieRepository.findById(id);
-        if (movie.isPresent()) {
-            movie.get().deleteRating(rating);
+    @DeleteMapping("/movies/{movieId}/ratings/{ratingId}")
+    public ResponseEntity<Void> deleteRating(@PathVariable Long movieId, @PathVariable Long ratingId) {
+
+        Optional<Movie> movie = this.movieRepository.findById(movieId);
+        Optional<Rating> rating = this.ratingRepository.findById(ratingId);
+
+        if (movie.isPresent() && rating.isPresent()) {
+            movie.get().deleteRating(rating.get());
             this.movieRepository.save(movie.get());
             return ResponseEntity.noContent().build();
         }

@@ -27,7 +27,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     private String username;
@@ -65,5 +65,16 @@ public class User {
 
     public boolean deleteFromWactedList(Movie movie) {
         return this.watchedList.remove(movie);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof User))
+            return false;
+
+        User other = (User) o;
+
+        return id != null && id.equals(other.getId());
     }
 }

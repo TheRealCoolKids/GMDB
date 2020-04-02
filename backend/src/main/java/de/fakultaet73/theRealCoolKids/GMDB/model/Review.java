@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +24,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String title;
 
@@ -44,7 +43,15 @@ public class Review {
         this.text = text;
     }
 
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof Review))
+            return false;
+
+        Review other = (Review) o;
+
+        return id != null && id.equals(other.getId());
+    }
+
 }
-
-
-

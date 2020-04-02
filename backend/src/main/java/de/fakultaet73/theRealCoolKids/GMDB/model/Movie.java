@@ -66,25 +66,16 @@ public class Movie {
     public boolean deleteRating(Rating rating) {
         return this.ratings.remove(rating);
     }
-     
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-     
-            if (!(o instanceof Movie))
-                return false;
-     
-            Movie other = (Movie) o;
-     
-            return id != null &&
-                   id.equals(other.getId());
-        }
-     
-        @Override
-        public int hashCode() {
-            return 31;
-        }
-     
-        //Getters and setters omitted for brevity
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof Movie))
+            return false;
+
+        Movie other = (Movie) o;
+
+        return id != null && id.equals(other.getId());
     }
 
+}

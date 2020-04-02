@@ -2,7 +2,7 @@
 
 **Movie** = { id | title | yearReleased | genre | runtime | rating | *reviews* | *ratings* }
 
-**Review** = { id |tTitle | creationDate | text | *user* }
+**Review** = { id | title | creationDate | text | *user* }
 
 **Rating** = { id | score | *user* }
 
@@ -24,23 +24,23 @@ Reviewer details and list of their reviews and ratings
 
 ### Reviewer
 
-* **/reviews - POST**
+* **/movies/{id}/reviews - POST**
 Write a review
 
 * **/reviews - PUT**
 Update a review
 
-* **/reviews/{id} - DELETE**
+* **/movies/{movieId}/reviews/{reviewId} - DELETE**
 Delete review
 
-* **/ratings - POST**
+* **/movies/{id}/ratings - POST**
 Write a review
 
 * **/ratings - PUT**
-Update a review
+Update a rating
 
-* **/ratings/{id} - DELETE**
-Delete review
+* **/movies/{movieId}/ratings/{ratingId} - DELETE**
+Delete rating
 
 * **/user/{username}/watchlist/ - POST**
 Add movie to user movie list
@@ -56,20 +56,8 @@ Add movie to user watched list
 
 ### ADMIN
 
-* **/movies - POST**
-Add movie
-
-* **/movies - PUT**
-Update movie
-
 * **/movies/{id} - DELETE**
 Delete movie
-
-* **/reviews - PUT**
-Update a review
-
-* **/reviews/{id} - DELETE**
-Delete a review
 
 * **/signup - POST**
 Register for an account
