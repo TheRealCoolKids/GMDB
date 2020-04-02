@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Movie from "../MovieSingle/MovieSingle";
 import './movieListStyle.css';
 
 function MovieList(props) {
 
+    const [movies, setMovies] = useState([]);
+
     const loadMovies = () => {
-        let movies = [];
 
         for (let index = 0; index < 50; index++) {
             movies.push({
@@ -30,7 +31,7 @@ function MovieList(props) {
             <div className="row">
                 {loadMovies().map((m, i) => {
                     return (
-                        <Movie movie={m}  key={i} />
+                        <Movie movie={m} key={i} />
                     )
                 })}
             </div>
