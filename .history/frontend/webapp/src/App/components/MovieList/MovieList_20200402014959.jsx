@@ -1,6 +1,6 @@
 import React from 'react';
 import Movie from "../MovieSingle/MovieSingle";
-import Modal from '@material-ui/core/Modal';
+import ModalPopup from "../Modal/ModalPopup";
 import './movieListStyle.css';
 
 function MovieList(props) {
@@ -33,18 +33,7 @@ function MovieList(props) {
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
-            <button type="button" onClick={handleOpen}>
-                Open Modal
-      </button>
-            <Modal
-                className="movie-modal"
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                <p>dasd</p>
-            </Modal>
+            <ModalPopup open={open} onClose={handleClose}/>
             <div className="row">
                 {loadMovies().map((m, i) => {
                     return (

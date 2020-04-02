@@ -43,7 +43,7 @@ function MovieList(props) {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <p>dasd</p>
+
             </Modal>
             <div className="row">
                 {loadMovies().map((m, i) => {

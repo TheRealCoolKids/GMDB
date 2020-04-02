@@ -4,8 +4,19 @@ import Modal from '@material-ui/core/Modal';
 import './movieListStyle.css';
 
 function MovieList(props) {
+
+    const [open, setOpen] = React.useState(false);
     const loadMovies = () => {
         let movies = [];
+
+        const handleOpen = () => {
+            setOpen(true);
+        };
+
+        const handleClose = () => {
+            setOpen(false);
+        };
+
         for (let index = 0; index < 50; index++) {
             movies.push({
                 id: 1,
@@ -19,32 +30,25 @@ function MovieList(props) {
             });
 
         }
+
         return movies;
     }
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
+
             <button type="button" onClick={handleOpen}>
                 Open Modal
-      </button>
+            </button>
             <Modal
-                className="movie-modal"
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <p>dasd</p>
+                <p>test</p>
             </Modal>
+
             <div className="row">
                 {loadMovies().map((m, i) => {
                     return (

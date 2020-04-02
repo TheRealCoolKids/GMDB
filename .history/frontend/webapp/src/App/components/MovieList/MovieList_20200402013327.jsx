@@ -21,7 +21,7 @@ function MovieList(props) {
         }
         return movies;
     }
-
+    
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -33,18 +33,19 @@ function MovieList(props) {
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
+
             <button type="button" onClick={handleOpen}>
                 Open Modal
-      </button>
+            </button>
             <Modal
-                className="movie-modal"
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <p>dasd</p>
+                <p>test</p>
             </Modal>
+
             <div className="row">
                 {loadMovies().map((m, i) => {
                     return (

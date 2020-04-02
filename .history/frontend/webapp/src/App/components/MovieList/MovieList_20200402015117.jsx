@@ -37,13 +37,12 @@ function MovieList(props) {
                 Open Modal
       </button>
             <Modal
-                className="movie-modal"
-                open={open}
-                onClose={handleClose}
+                open={props.open}
+                onClose={props.handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <p>dasd</p>
+
             </Modal>
             <div className="row">
                 {loadMovies().map((m, i) => {
