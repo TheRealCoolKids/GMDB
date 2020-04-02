@@ -15,7 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
  * Movie
  */
@@ -42,7 +41,7 @@ public class Movie {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Rating> ratings = new HashSet<>();
 
     public Movie(String title, int yearReleased, Genre genre, int runtime) {
@@ -50,6 +49,14 @@ public class Movie {
         this.yearReleased = yearReleased;
         this.genre = genre;
         this.runtime = runtime;
+    }
+
+    public boolean addReview(Review review) {
+        return this.reviews.add(review);
+    }
+
+    public boolean deleteReview(Review review) {
+        return this.reviews.remove(review);
     }
 
     @Override
