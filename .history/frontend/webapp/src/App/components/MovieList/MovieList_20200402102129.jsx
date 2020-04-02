@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Movie from "../MovieSingle/MovieSingle";
+import Modal from '@material-ui/core/Modal';
+import SingleMovieView from "./SingleMovieView/SingleMovieView";
 import './movieListStyle.css';
 
 function MovieList(props) {
+
+    const [movies, setMovies] = useState([]);
 
     const loadMovies = () => {
         let movies = [];
@@ -19,12 +23,19 @@ function MovieList(props) {
                 ratings: 20
             });
         }
-        return movies;
+        setMovies(movies);
     }
-    const [movies, setMovies] = useState(loadMovies());
+
+    useEffect(() => {
+        loadMovies();
+    });
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
+            <button type="button" onClick={handleOpen}>
+                Open Modal
+            </button>
+
             <div className="row" >
                 {movies.map((m, i) => {
                     return (

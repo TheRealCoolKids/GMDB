@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Movie from "../MovieSingle/MovieSingle";
 import './movieListStyle.css';
 
 function MovieList(props) {
+
+    
 
     const loadMovies = () => {
         let movies = [];
@@ -22,6 +24,9 @@ function MovieList(props) {
         return movies;
     }
     const [movies, setMovies] = useState(loadMovies());
+    // useEffect(() => {
+    //     loadMovies();
+    // });
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>

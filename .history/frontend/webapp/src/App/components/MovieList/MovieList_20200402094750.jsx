@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Movie from "../MovieSingle/MovieSingle";
+import Modal from '@material-ui/core/Modal';
 import './movieListStyle.css';
 
 function MovieList(props) {
 
-    const loadMovies = () => {
-        let movies = [];
+    const [movies, setMovies] = useState([]);
 
+    const loadMovies = () => {
         for (let index = 0; index < 50; index++) {
             movies.push({
                 id: 1,
@@ -18,14 +19,34 @@ function MovieList(props) {
                 reviews: [],
                 ratings: 20
             });
+
         }
-        return movies;
     }
-    const [movies, setMovies] = useState(loadMovies());
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
-            <div className="row" >
+            <button type="button" onClick={handleOpen}>
+                Open Modal
+      </button>
+            <Modal
+                className="movie-modal"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                <p>dasd</p>
+            </Modal>
+            <div className="row">
                 {movies.map((m, i) => {
                     return (
                         <Movie movie={m} key={i} />
