@@ -37,7 +37,7 @@ function MovieSingleDetail(props) {
                 </div>
             </div>
             <div className="card-footer movie-review-list">
-                <ReviewList movieId={props.movie.id}/>
+                <ReviewList/>
             </div>
         </div>
     );

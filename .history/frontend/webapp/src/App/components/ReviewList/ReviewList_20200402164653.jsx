@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import MovieSingle from "../MovieSingle/MovieSingle";
+import React from 'react';
 
-import './movieListStyle.css';
-
-function MovieList(props) {
-    const loadMovies = () => {
-        let movies = [];
+function ReviewList(props) {
+    const loadReviews = () => {
+        let reviews = [];
 
         for (let index = 0; index < 50; index++) {
-            movies.push({
+            reviews.push({
                 id: 1,
                 title: "John big Dick",
                 yearReleased: 2013,
@@ -19,14 +16,14 @@ function MovieList(props) {
                 ratings: 20
             });
         }
-        return movies;
+        return reviews;
     }
 
-    const [movies, setMovies] = useState(loadMovies());
+    const [reviews, setReviews] = useState(loadReviews());
 
 
     return (
-        <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
+        <div className="container-fluid review-list" data-testid='CardList'>
             <div className="row" >
                 {movies.map((m, i) => {
                     return (
@@ -38,4 +35,4 @@ function MovieList(props) {
     );
 }
 
-export default MovieList;
+export default ReviewList;

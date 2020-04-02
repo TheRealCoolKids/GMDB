@@ -5,7 +5,7 @@ import "./MainContentStyle.css";
 function MainContent(props) {
     return (
         <div className="container-fluid main-content">
-            <MovieList />
+            <MovieList/>
         </div>
     );
 }

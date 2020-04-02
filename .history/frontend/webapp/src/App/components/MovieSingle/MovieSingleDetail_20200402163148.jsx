@@ -1,9 +1,10 @@
 import React from 'react';
 import './movieSingle.css';
+import Button from '@material-ui/core/Button';
 import StarIcon from '@material-ui/icons/Star';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import MoodIcon from '@material-ui/icons/Mood';
-import ReviewList from "../ReviewList/ReviewList";
+import { makeStyles } from '@material-ui/core/styles';
 
 
 function MovieSingleDetail(props) {
@@ -35,9 +36,6 @@ function MovieSingleDetail(props) {
                         <RateReviewIcon /> {props.movie.yearReleased}
                     </div>
                 </div>
-            </div>
-            <div className="card-footer movie-review-list">
-                <ReviewList movieId={props.movie.id}/>
             </div>
         </div>
     );

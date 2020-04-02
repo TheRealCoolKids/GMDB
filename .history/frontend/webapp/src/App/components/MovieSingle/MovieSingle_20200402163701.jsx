@@ -24,7 +24,7 @@ function MovieSingle(props) {
 
 
     return (
-        <div className="card movie-single-small noselect" data-testid="MovieCard" >
+        <div className="card movie-single-small" data-testid="MovieCard" >
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -45,13 +45,19 @@ function MovieSingle(props) {
                 <div className="container">
                     <div className="row movie-meta">
                         <div className="col-4 metadata">
+                            <Button variant="outlined" color="secondary" startIcon={}>
                             <StarIcon /> {props.movie.rating}/5
+                        </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <MoodIcon /> {props.movie.ratings}
+                            <Button variant="outlined" color="secondary" startIcon={<MoodIcon />}>
+                                {props.movie.ratings}
+                            </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <RateReviewIcon /> {props.movie.reviews.length}
+                            <Button variant="outlined" color="secondary" startIcon={<RateReviewIcon />}>
+                                {props.movie.reviews.length}
+                            </Button>
                         </div>
                     </div>
 

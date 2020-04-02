@@ -1,11 +1,9 @@
 import React from 'react';
 import './movieSingle.css';
 import Button from '@material-ui/core/Button';
-import MovieSingleDetail from "./MovieSingleDetail";
-import Modal from '@material-ui/core/Modal';
-
-import RateReviewIcon from '@material-ui/icons/RateReview';
 import StarIcon from '@material-ui/icons/Star';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import Modal from '@material-ui/core/Modal';
 import MoodIcon from '@material-ui/icons/Mood';
 
 
@@ -13,7 +11,6 @@ function MovieSingle(props) {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
-        console.log("open");
         setOpen(true);
     };
 
@@ -21,37 +18,39 @@ function MovieSingle(props) {
         setOpen(false);
     };
 
-
-
     return (
-        <div className="card movie-single-small noselect" data-testid="MovieCard" >
+        <div className="card movie-single-small" onClick={props.onClick} data-testid="MovieCard" >
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <MovieSingleDetail movie={props.movie} />
+                <p>asdasd</p>
             </Modal>
-            <div className="card-header" onClick={handleOpen}>
+            <div className="card-body">
                 <h1 className="card-title">{props.movie.title}</h1>
-                <div className="row">
-                    <div className="col-12 metadata">
-                        <p>{props.movie.genre}</p>
-                    </div>
-                </div>
-            </div>
-            <div className="card-body" onClick={handleOpen}>
                 <div className="container">
+                    <div className="row">
+                        <div className="col-12 metadata">
+                            <p>{props.movie.genre}</p>
+                        </div>
+                    </div>
                     <div className="row movie-meta">
                         <div className="col-4 metadata">
-                            <StarIcon /> {props.movie.rating}/5
+                            <Button variant="outlined" color="secondary" startIcon={<StarIcon />}>
+                                {props.movie.rating}/5
+                        </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <MoodIcon /> {props.movie.ratings}
+                            <Button variant="outlined" color="secondary" startIcon={<MoodIcon />}>
+                                {props.movie.ratings}
+                            </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <RateReviewIcon /> {props.movie.reviews.length}
+                            <Button variant="outlined" color="secondary" startIcon={<RateReviewIcon />}>
+                                {props.movie.reviews.length}
+                            </Button>
                         </div>
                     </div>
 
@@ -60,7 +59,5 @@ function MovieSingle(props) {
         </div>
     );
 }
-
-
 
 export default MovieSingle;

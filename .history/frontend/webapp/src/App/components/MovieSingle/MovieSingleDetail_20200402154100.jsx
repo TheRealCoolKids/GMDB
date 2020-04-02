@@ -1,16 +1,17 @@
 import React from 'react';
 import './movieSingle.css';
+import Button from '@material-ui/core/Button';
 import StarIcon from '@material-ui/icons/Star';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import MoodIcon from '@material-ui/icons/Mood';
-import ReviewList from "../ReviewList/ReviewList";
+import { makeStyles } from '@material-ui/core/styles';
 
 
 function MovieSingleDetail(props) {
 
     return (
         <div className="card movie-single-detail" data-testid="MovieCard" >
-            <div className="card-header">
+            <div className="card-body">
                 <h1 className="card-title">{props.movie.title}</h1>
                 <div className="container">
                     <div className="row">
@@ -18,26 +19,20 @@ function MovieSingleDetail(props) {
                             <p>{props.movie.genre}</p>
                         </div>
                     </div>
+                    <div className="row movie-meta">
+                            <StarIcon /> {props.movie.rating}/5
+                            <MoodIcon /> {props.movie.ratings}
+                            <RateReviewIcon/> {props.movie.reviews.length}
+                    </div>
+
                 </div>
             </div>
-            <div className="card-body movie-meta">
-                <div className="row ">
-                    <div className="col-3 metadata">
+            <div className="card-body">
+                <div className="row movie-meta">
                         <StarIcon /> {props.movie.rating}/5
-                    </div>
-                    <div className="col-3 metadata">
                         <MoodIcon /> {props.movie.ratings}
-                    </div>
-                    <div className="col-3 metadata">
-                        <RateReviewIcon /> {props.movie.runtime}
-                    </div>
-                    <div className="col-3 metadata">
-                        <RateReviewIcon /> {props.movie.yearReleased}
-                    </div>
+                        <RateReviewIcon/> {props.movie.reviews.length}
                 </div>
-            </div>
-            <div className="card-footer movie-review-list">
-                <ReviewList movieId={props.movie.id}/>
             </div>
         </div>
     );

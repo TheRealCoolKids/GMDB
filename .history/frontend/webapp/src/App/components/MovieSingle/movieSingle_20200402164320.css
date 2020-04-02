@@ -34,6 +34,7 @@
     text-align: center;
     width:80%;
     background-color: #FFFEFD;
+    padding-bottom: 50px;
     min-width: 380px;
     margin:100px auto;
     border-color:  #0c4677;
@@ -47,9 +48,5 @@
     background-color:  #0c4677;
     border-color:  none;
     color: #FFFEFD;
-}
 
-.movie-single-detail .review-list{
-    max-height:500px;
-    overflow: scroll;
 }

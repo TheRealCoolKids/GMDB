@@ -24,34 +24,41 @@ function MovieSingle(props) {
 
 
     return (
-        <div className="card movie-single-small noselect" data-testid="MovieCard" >
+        <div className="card movie-single-small" data-testid="MovieCard" >
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <MovieSingleDetail movie={props.movie} />
+                <MovieSingleDetail  movie={props.movie} />
             </Modal>
             <div className="card-header" onClick={handleOpen}>
                 <h1 className="card-title">{props.movie.title}</h1>
                 <div className="row">
-                    <div className="col-12 metadata">
-                        <p>{props.movie.genre}</p>
+                        <div className="col-12 metadata">
+                            <p>{props.movie.genre}</p>
+                        </div>
                     </div>
-                </div>
             </div>
             <div className="card-body" onClick={handleOpen}>
                 <div className="container">
+
                     <div className="row movie-meta">
                         <div className="col-4 metadata">
-                            <StarIcon /> {props.movie.rating}/5
+                            <Button variant="outlined" color="secondary" startIcon={<StarIcon />}>
+                                {props.movie.rating}/5
+                        </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <MoodIcon /> {props.movie.ratings}
+                            <Button variant="outlined" color="secondary" startIcon={<MoodIcon />}>
+                                {props.movie.ratings}
+                            </Button>
                         </div>
                         <div className="col-4 metadata">
-                            <RateReviewIcon /> {props.movie.reviews.length}
+                            <Button variant="outlined" color="secondary" startIcon={<RateReviewIcon />}>
+                                {props.movie.reviews.length}
+                            </Button>
                         </div>
                     </div>
 

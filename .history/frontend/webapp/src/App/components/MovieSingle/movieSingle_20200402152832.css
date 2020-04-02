@@ -1,0 +1,15 @@
+.movie-single-small {
+    text-align: center;
+    width:450px;
+    background-color: #FFFEFD;
+    padding-bottom: 50px;
+    min-width: 380px;
+}
+
+.movie-meta{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin:10px;
+}

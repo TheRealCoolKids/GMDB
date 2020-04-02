@@ -24,7 +24,7 @@ function MovieSingle(props) {
 
 
     return (
-        <div className="card movie-single-small noselect" data-testid="MovieCard" >
+        <div className="card movie-single-small" data-testid="MovieCard" >
             <Modal
                 open={open}
                 onClose={handleClose}

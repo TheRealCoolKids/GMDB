@@ -1,0 +1,37 @@
+.movie-single-small {
+    text-align: center;
+    width:450px;
+    background-color: #FFFEFD;
+    min-width: 380px;
+}
+
+.movie-single-small .movie-meta{
+    margin:0;
+    padding:0;
+    color:#FFFEFD;
+}
+
+.movie-single-small .card-footer{
+    background-color: #0c4677;
+}
+
+.movie-single-detail{
+    text-align: center;
+    width:80%;
+    background-color: #FFFEFD;
+    padding-bottom: 50px;
+    min-width: 380px;
+    margin:100px auto;
+    border-color:  #0c4677;
+}
+
+.movie-single-detail .movie-meta{
+    padding:20px;
+}
+
+.movie-single-detail .card-header{
+    background-color:  #0c4677;
+    border-color:  none;
+    color: #FFFEFD;
+
+}

@@ -27,6 +27,11 @@ function MovieList(props) {
 
     return (
         <div className="container-fluid movie-list" key="mainCardList" data-testid='CardList'>
+            <button type="button" onClick={handleOpen}>
+                Open Modal
+            </button>
+
+
             <div className="row" >
                 {movies.map((m, i) => {
                     return (
