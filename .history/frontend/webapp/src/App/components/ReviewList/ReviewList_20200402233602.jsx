@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import "./ReviewList.css";
 import ReviewSingle from "./ReviewSingle";
-import { LoremIpsum, username } from 'react-lorem-ipsum';
 
 function ReviewList(props) {
     const [expanded, setExpanded] = React.useState(false);
@@ -21,10 +20,10 @@ function ReviewList(props) {
         for (let index = 0; index < 50; index++) {
             reviews.push({
                 id: 1,
-                title: <LoremIpsum p={1} startWithLoremIpsum={false} avgSentencesPerParagraph={1} avgWordsPerSentence={6}/>,
-                creationDate: "01.03.2013",
-                text: <LoremIpsum p={Math.random()*10+1} startWithLoremIpsum={false}/>,
-                user: {username:username() },
+                title: "Love it",
+                creationDate: 2013,
+                text: "Underground asdasdasdasdasda aaaaaa aaa aaaaaaa a aaaaaaaaaaaaaaaaaa   aaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaa aaaaaaa asdaaaaahardcore Heimatporn",
+                user: {username:"Michael Michalski" },
             });
         }
         return reviews;
