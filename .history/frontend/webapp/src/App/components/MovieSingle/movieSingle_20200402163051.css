@@ -1,0 +1,28 @@
+.movie-single-small {
+    text-align: center;
+    width:450px;
+    background-color: #FFFEFD;
+    padding-bottom: 50px;
+    min-width: 380px;
+}
+
+.movie-single-small .movie-meta{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin:10px;
+}
+
+.movie-single-detail{
+    text-align: center;
+    width:80%;
+    background-color: #FFFEFD;
+    padding-bottom: 50px;
+    min-width: 380px;
+    margin:100px auto;
+}
+
+.movie-single-detail .movie-meta{
+    padding:0;
+}

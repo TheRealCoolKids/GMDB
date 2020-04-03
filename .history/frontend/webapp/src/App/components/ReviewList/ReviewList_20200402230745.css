@@ -1,0 +1,21 @@
+.review-list-root{
+    width:100%;
+}
+
+.review-title{
+    width:50%;
+    text-align: left;
+    color:red !important;
+}
+
+.review-user{
+    width:25%;
+    text-align: left;
+    color:red !important;
+}
+
+.review-date{
+    width:25%;
+    text-align: left;
+    color:red !important;
+}

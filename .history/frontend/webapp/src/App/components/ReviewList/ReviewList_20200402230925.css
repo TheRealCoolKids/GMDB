@@ -1,0 +1,24 @@
+.review-list-root{
+    width:100%;
+}
+
+.review-title{
+    width:70%;
+    text-align: left;
+    font-size: 1rem !important;
+    color:red !important;
+}
+
+.review-user{
+    width:15%;
+    text-align: center;
+    font-size: 0.54rem !important;
+    color:red !important;
+}
+
+.review-date{
+    width:15%;
+    text-align: right;
+    font-size: 0.54rem !important;
+    color:red !important;
+}

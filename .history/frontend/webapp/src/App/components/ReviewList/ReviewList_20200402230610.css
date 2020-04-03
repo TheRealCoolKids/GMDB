@@ -1,0 +1,16 @@
+.review-list-root{
+    width:100%;
+}
+
+.review-title{
+    flex-basis: 33,33%;
+    color:red !important;
+}
+
+.review-user{
+
+}
+
+.review-date{
+
+}
