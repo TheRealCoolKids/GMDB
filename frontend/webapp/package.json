@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^25.1.4",
     "add": "^2.0.6",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "jest": "^24.9.0",
     "material-ui": "^0.20.2",
