@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import "./ReviewList.css";
+import ReviewSingle from "./ReviewSingle";
 import { LoremIpsum, username } from 'react-lorem-ipsum';
 
 function ReviewList(props) {

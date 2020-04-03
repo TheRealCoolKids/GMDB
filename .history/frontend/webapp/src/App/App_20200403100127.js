@@ -7,10 +7,8 @@ import MainContent from "./components/MainContent/MainContent";
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: '#0c4677',
-      light: '#376E9B',
-      dark: '#022745'
+    secondary: {
+      main: '#FFFEFD'
     }
   }
 },

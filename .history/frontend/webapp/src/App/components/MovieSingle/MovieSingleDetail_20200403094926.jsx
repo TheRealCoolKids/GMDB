@@ -1,12 +1,10 @@
 import React from 'react';
 import './movieSingle.css';
+import StarIcon from '@material-ui/icons/Star';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import MoodIcon from '@material-ui/icons/Mood';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import ReviewList from "../ReviewList/ReviewList";
 import RatingButton from "../Rating/RatingButton";
-import {Button} from "@material-ui/core";
 
 
 function MovieSingleDetail(props) {
@@ -27,21 +25,16 @@ function MovieSingleDetail(props) {
                 <div className="row ">
                     <div className="col-3 metadata">
                         <RatingButton rating={props.movie.rating} />
+                        <StarIcon /> {props.movie.rating}/5
                     </div>
                     <div className="col-3 metadata">
-                        <Button variant="contained" size="large" color="primary" startIcon={<MoodIcon />}>
-                            {props.movie.ratings}
-                        </Button>
+                        <MoodIcon /> {props.movie.ratings}
                     </div>
                     <div className="col-3 metadata">
-                        <Button variant="contained" size="large" color="primary" startIcon={<AccessTimeIcon /> }>
-                            {props.movie.runtime}
-                        </Button>
+                        <RateReviewIcon /> {props.movie.runtime}
                     </div>
                     <div className="col-3 metadata">
-                    <Button variant="contained" size="large" color="primary" startIcon={<CalendarTodayIcon /> }>
-                        {props.movie.yearReleased}
-                    </Button>                       
+                        <RateReviewIcon /> {props.movie.yearReleased}
                     </div>
                 </div>
             </div>
